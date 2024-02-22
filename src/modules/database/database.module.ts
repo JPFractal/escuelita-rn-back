@@ -8,8 +8,7 @@ import dbConfiguration from "src/config/db.configuration";
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        const database: ConfigType<typeof dbConfiguration> =
-          configService.get<ConfigType<typeof dbConfiguration>>("database");
+        const database: ConfigType<typeof dbConfiguration> = configService.get<ConfigType<typeof dbConfiguration>>("database");
         return {
           dialect: database.dialect,
           host: database.host,
