@@ -1,13 +1,11 @@
 version: "3.8"
-
 services:
-  postgres:
-    image: postgres:latest
-    container_name: postgresql_development
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-dev
     ports:
-      - 5432:5432
+      - 3306:3306
     environment:
-      - POSTGRES_PASSWORD=root_sql
-      - POSTGRES_USER=root
+      MYSQL_ROOT_PASSWORD: root_sql
     volumes:
       - ./db:/docker-entrypoint-initdb.d
