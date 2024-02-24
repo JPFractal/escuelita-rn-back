@@ -16,6 +16,7 @@ lerna-debug.log*
 
 # Env files
 .production.env
+.env.env
 
 # Tests
 /coverage
