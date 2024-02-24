@@ -11,7 +11,7 @@ import jwtConfig from "src/config/jwt.config";
       cache: true,
       expandVariables: true,
       load: [configuration, dbConfiguration, awsConfiguration, jwtConfig],
-      envFilePath: process.env.NODE_ENV || ".development.env",
+      envFilePath: process.env.NODE_ENV || ".dev.env",
       validate,
       isGlobal: true,
     }),

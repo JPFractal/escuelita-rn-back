@@ -7,9 +7,9 @@ import { JwtAuthGuard } from "src/guards/jwt-auth.guard";
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  @Get("/profile")
+  @Get("/profile/:username")
   @UseGuards(JwtAuthGuard, RolesGuard)
-  async getProfile(@Request() req: Request) {
-    return await this.userService.getProfile((req as any).user.username);
+  async getProfile(@Param("username") username: string) {
+    return await this.userService.getProfile(username);
   }
 }

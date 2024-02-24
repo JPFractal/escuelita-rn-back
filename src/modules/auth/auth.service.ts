@@ -1,31 +1,54 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
+import { Inject, Injectable, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { UsersService } from "../users/users.service";
+import { JWTPayload, SignInReponse } from "./auth.dto";
+import { ConfigType } from "@nestjs/config";
+import jwtConfig from "src/config/jwt.config";
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    @Inject(jwtConfig.KEY) private jwt: ConfigType<typeof jwtConfig>,
   ) {}
 
-  async signIn(
-    username: string,
-    pass: string,
-  ): Promise<{ access_token: string }> {
+  async login(username: string, pass: string): Promise<SignInReponse> {
     const user = await this.usersService.findOne(username);
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
-    const payload = {
-      sub: user.userId,
+
+    const payload: JWTPayload = {
+      sub: user.userId + "",
       username: user.username,
       roles: user.roles,
     };
     return {
-      // access_token: "await this.jwtService.signAsync(payload)",
-      access_token: await this.jwtService.signAsync(payload),
+      accessToken: await this.generateAcessToken(payload),
+      refreshToken: await this.generateRefreshToken(payload),
     };
+  }
+
+  async refreshToken(payload: JWTPayload) {
+    try {
+      return {
+        accessToken: await this.generateAcessToken(payload),
+      };
+    } catch (error) {
+      console.log("AuthService refreshToken: ", error);
+      throw error;
+    }
+  }
+
+  async generateAcessToken(payload: JWTPayload) {
+    return await this.jwtService.signAsync(payload);
+  }
+  async generateRefreshToken(payload: JWTPayload) {
+    return this.jwtService.signAsync(payload, {
+      expiresIn: "1h",
+      secret: this.jwt.jwt_refresh,
+    });
   }
 
   async validateUser(username: string, pass: string): Promise<any> {
