@@ -17,8 +17,8 @@ import dbConfiguration from "src/config/db.configuration";
           password: database.password,
           database: database.database,
 
-          autoLoadModels: true,
-          synchronize: true,
+          autoLoadModels: false,
+          synchronize: false,
         };
       },
       inject: [ConfigService],
