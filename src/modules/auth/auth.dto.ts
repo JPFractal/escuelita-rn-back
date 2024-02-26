@@ -15,7 +15,6 @@ export class RefreshDTO {
 export type SignInReponse = {
   accessToken: string;
   refreshToken: string;
-  user: any;
 };
 export type JWTPayload = {
   sub: string;

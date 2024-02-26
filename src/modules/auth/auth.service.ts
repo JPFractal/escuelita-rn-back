@@ -27,10 +27,6 @@ export class AuthService {
     return {
       accessToken: await this.generateAcessToken(payload),
       refreshToken: await this.generateRefreshToken(payload),
-      user: {
-        name: user.firstName + " " + user.lastName,
-        role: user.roles[0],
-      },
     };
   }
 

@@ -35,7 +35,7 @@ export class UsersService {
   }
   async getProfile(username: string): Promise<User> {
     const user = this.users.find((user) => user.username == username);
-    delete user.password;
+    // delete user.password; // just for dev... it deletes the password from the array db 
     return user;
   }
 }
