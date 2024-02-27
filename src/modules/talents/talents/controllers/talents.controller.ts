@@ -10,7 +10,13 @@ export class TalentsController {
 
   @Get("/")
   //@UseGuards(JwtAuthGuard, RolesGuard)
-  async getProfile(@Param("username") username: string) {
+  async getAll() {
     return await this.talentsService.findAll();
+  }
+
+  @Get("/register")
+  //@UseGuards(JwtAuthGuard, RolesGuard)
+  async getRegisterOptions() {
+    return await this.talentsService.getOptionsForRegister();
   }
 }

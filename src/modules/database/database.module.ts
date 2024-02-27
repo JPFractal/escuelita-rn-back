@@ -4,6 +4,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
 import dbConfiguration from "src/config/db.configuration";
 import { Talent } from "../talents/talents/models/talents.entity";
 import { Language } from "../talents/languages/models/languages.entity";
+import { Level } from "../talents/languages/models/levels.entity";
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { Language } from "../talents/languages/models/languages.entity";
 
           autoLoadModels: false,
           synchronize: false,
-          models: [Talent, Language],
+          models: [Talent, Language, Level],
         };
       },
       inject: [ConfigService],

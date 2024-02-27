@@ -10,7 +10,12 @@ export class LanguagesController {
 
   @Get("/")
   //@UseGuards(JwtAuthGuard, RolesGuard)
-  async getAll() {
-    return await this.languagesService.findAll();
+  async getAllLanguages() {
+    return await this.languagesService.findAllLanguges();
+  }
+  @Get("/levels")
+  //@UseGuards(JwtAuthGuard, RolesGuard)
+  async getAllLevels() {
+    return await this.languagesService.findAllLevels();
   }
 }
