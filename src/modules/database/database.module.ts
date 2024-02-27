@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService, ConfigType } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
 import dbConfiguration from "src/config/db.configuration";
+import { Talent } from "../talents/talents/models/talents.entity";
+import { Language } from "../talents/languages/models/languages.entity";
 
 @Module({
   imports: [
@@ -19,6 +21,7 @@ import dbConfiguration from "src/config/db.configuration";
 
           autoLoadModels: false,
           synchronize: false,
+          models: [Talent, Language],
         };
       },
       inject: [ConfigService],
