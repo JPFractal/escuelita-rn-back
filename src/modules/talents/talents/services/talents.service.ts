@@ -9,6 +9,8 @@ import { LanguageDto } from "../../languages/dtos/language.dto";
 import { LevelDto } from "../../languages/dtos/level.dto";
 import { mapLanguageToDto, mapLevelToDto } from "../../languages/mappers/languages.mapper";
 import { RegisterOptions } from "src/types/registerOptions.response";
+import { TalentDTO } from "../dtos/talent.dto";
+import { mapTalentToDto, mapTalentToEntity } from "../mappers/talents.mapper";
 
 @Injectable()
 export class TalentsService {
@@ -40,6 +42,16 @@ export class TalentsService {
       languages: languagesMapped,
       languagesLevels: levelsMapped,
     };
+
+    return response;
+  }
+
+  async registerTalent(talent: TalentDTO): Promise<any> {
+    const newTalent = mapTalentToEntity(talent);
+
+    const talentRegistered = await newTalent.save();
+
+    const response: TalentDTO = mapTalentToDto(talentRegistered);
 
     return response;
   }

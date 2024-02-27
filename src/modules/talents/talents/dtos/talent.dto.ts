@@ -1,9 +1,10 @@
 import { IsString, IsInt, IsOptional, IsUrl, IsDate, Length, Max, Min } from "class-validator";
+import { NotNull } from "sequelize-typescript";
 
 export class TalentDTO {
   @IsInt()
   @IsOptional()
-  id: number;
+  id?: number;
 
   @IsString()
   @Length(0, 100)
