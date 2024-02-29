@@ -1,5 +1,5 @@
-import { LanguageDto } from "src/modules/talents/languages/dtos/language.dto";
-import { LevelDto } from "src/modules/talents/languages/dtos/level.dto";
+import { LanguageDto } from "src/modules/talentMetaData/dtos/language.dto";
+import { LevelDto } from "src/modules/talentMetaData/dtos/level.dto";
 
 export type RegisterOptions = {
   languages: LanguageDto[];

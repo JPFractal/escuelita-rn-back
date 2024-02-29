@@ -3,8 +3,8 @@ import { ConfigModule, ConfigService, ConfigType } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
 import dbConfiguration from "src/config/db.configuration";
 import { Talent } from "../talents/talents/models/talents.entity";
-import { Language } from "../talents/languages/models/languages.entity";
-import { Level } from "../talents/languages/models/levels.entity";
+import { Language } from "../talentMetaData/models/languages.entity";
+import { Level } from "../talentMetaData/models/levels.entity";
 
 @Module({
   imports: [

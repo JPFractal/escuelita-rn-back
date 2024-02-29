@@ -5,7 +5,7 @@ import { Language } from "../models/languages.entity";
 import { Level } from "../models/levels.entity";
 
 @Injectable()
-export class LanguagesService {
+export class TalentMetadataService {
   constructor(
     @InjectModel(Language)
     private languagesRepository: typeof Language,
