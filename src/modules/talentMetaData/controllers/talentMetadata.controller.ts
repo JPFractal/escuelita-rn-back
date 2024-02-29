@@ -4,11 +4,11 @@ import { RolesGuard } from "src/guards/roles.guard";
 import { JwtAuthGuard } from "src/guards/jwt-auth.guard";
 import { TalentMetadataService } from "../services/talentMetadata.service";
 
-@Controller("metaData")
+@Controller("metadata")
 export class TalentMetadataController {
   constructor(private metadataService: TalentMetadataService) {}
 
-  @Get("/")
+  @Get("/languages")
   //@UseGuards(JwtAuthGuard, RolesGuard)
   async getAllLanguages() {
     return await this.metadataService.findAllLanguges();
@@ -17,5 +17,11 @@ export class TalentMetadataController {
   //@UseGuards(JwtAuthGuard, RolesGuard)
   async getAllLevels() {
     return await this.metadataService.findAllLevels();
+  }
+
+  @Get("/register")
+  //@UseGuards(JwtAuthGuard, RolesGuard)
+  async getRegisterOptions() {
+    return await this.metadataService.getOptionsForRegister();
   }
 }

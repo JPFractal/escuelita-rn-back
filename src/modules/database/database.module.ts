@@ -3,8 +3,12 @@ import { ConfigModule, ConfigService, ConfigType } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
 import dbConfiguration from "src/config/db.configuration";
 import { Talent } from "../talents/talents/models/talents.entity";
-import { Language } from "../talentMetaData/models/languages.entity";
-import { Level } from "../talentMetaData/models/levels.entity";
+import { Language } from "../talentMetaData/models/language.entity";
+import { Level } from "../talentMetaData/models/level.entity";
+import { Currency } from "../talentMetaData/models/currency.entity";
+import { Country } from "../talentMetaData/models/country.entity";
+import { City } from "../talentMetaData/models/city.entity";
+import { TechnicalProfile } from "../talentMetaData/models/technicalProfile.entity";
 
 @Module({
   imports: [
@@ -22,7 +26,7 @@ import { Level } from "../talentMetaData/models/levels.entity";
 
           autoLoadModels: false,
           synchronize: false,
-          models: [Talent, Language, Level],
+          models: [Talent, Language, Level, Currency, Country, City, TechnicalProfile],
         };
       },
       inject: [ConfigService],
