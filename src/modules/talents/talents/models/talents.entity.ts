@@ -1,4 +1,4 @@
-import { Table, Column, Model, PrimaryKey, AutoIncrement, CreatedAt, UpdatedAt } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, CreatedAt, UpdatedAt, BeforeCreate } from "sequelize-typescript";
 
 @Table({ tableName: "BT_TM_TALENTO", timestamps: false })
 export class Talent extends Model {
@@ -52,4 +52,9 @@ export class Talent extends Model {
   @Column
   @CreatedAt
   FE_CREACION: Date;
+
+  @BeforeCreate
+  static setCreationDate(instance: Talent) {
+    instance.FE_CREACION = new Date();
+  }
 }

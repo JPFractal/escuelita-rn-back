@@ -3,14 +3,10 @@ import { TalentsController } from "./controllers/talents.controller";
 import { TalentsService } from "./services/talents.service";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { Talent } from "./models/talents.entity";
-import { Language } from "../languages/models/languages.entity";
-import { LanguagesService } from "../languages/services/lnguages.service";
-import { LanguagesController } from "../languages/controllers/languages.controller";
-import { Level } from "../languages/models/levels.entity";
 
-const Entities = [Talent, Language, Level];
-const Services = [TalentsService, LanguagesService];
-const Controllers = [TalentsController, LanguagesController];
+const Entities = [Talent];
+const Services = [TalentsService];
+const Controllers = [TalentsController];
 
 @Module({
   imports: [SequelizeModule.forFeature([...Entities])],

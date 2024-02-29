@@ -1,9 +1,8 @@
-import { Controller, Get, Param, Post, Request, UseGuards } from "@nestjs/common";
-
+import { Body, Controller, Get, Param, Post, Request, UseGuards } from "@nestjs/common";
 import { RolesGuard } from "src/guards/roles.guard";
 import { JwtAuthGuard } from "src/guards/jwt-auth.guard";
 import { TalentsService } from "../services/talents.service";
-import { TalentDTO } from "../dtos/talent.dto";
+import { RegisterTalentDTO } from "../dtos/talent.dto";
 
 @Controller("talents")
 export class TalentsController {
@@ -15,15 +14,9 @@ export class TalentsController {
     return await this.talentsService.findAll();
   }
 
-  @Get("/register")
-  //@UseGuards(JwtAuthGuard, RolesGuard)
-  async getRegisterOptions() {
-    return await this.talentsService.getOptionsForRegister();
-  }
-
   @Post("/register")
   //@UseGuards(JwtAuthGuard, RolesGuard)
-  async register(@Request() req) {
+  async register(@Body() talent: RegisterTalentDTO) {
     /*const mockupPayload: TalentDTO = {
       firstName: "John",
       paternalSurname: "Doe",
@@ -42,11 +35,6 @@ export class TalentsController {
       createdAt: new Date(),
     };*/
 
-    const talentPayload: TalentDTO = req.body;
-
-    if (!talentPayload) throw new Error("No payload provided");
-
-    //return talentPayload;
-    return await this.talentsService.registerTalent(talentPayload);
+    return await this.talentsService.registerTalent(talent);
   }
 }
