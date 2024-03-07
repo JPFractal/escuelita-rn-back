@@ -1,4 +1,4 @@
-import { Table, Column, Model, PrimaryKey, AutoIncrement, CreatedAt, UpdatedAt, BeforeCreate } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, AutoIncrement, CreatedAt, UpdatedAt, BeforeCreate, DataType } from "sequelize-typescript";
 
 @Table({ tableName: "BT_TM_TALENTO", timestamps: false })
 export class Talent extends Model {
@@ -16,8 +16,8 @@ export class Talent extends Model {
   @Column
   AP_APELLIDO_MATERNO: string;
 
-  @Column
-  URL_IMAGEN: string;
+  @Column(DataType.BLOB)
+  URL_IMAGEN: Buffer;
 
   @Column
   DE_DESCRIPCION: string;

@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsOptional, IsUrl, IsDate, Length, Max, Min, IsNotEmpty, isString } from "class-validator";
+import { IsString, IsInt, IsOptional, IsUrl, IsDate, Length, Max, Min, IsNotEmpty, isString, IsBase64 } from "class-validator";
 import { NotNull } from "sequelize-typescript";
 
 export class TalentResponse {
@@ -37,8 +37,7 @@ export class RegisterTalentDTO {
   maternalSurname: string;
 
   @IsNotEmpty()
-  @IsUrl()
-  @Length(0, 100)
+  @IsBase64()
   imageUrl: string;
 
   @IsNotEmpty()
@@ -106,7 +105,7 @@ export class UpdateTalentDTO {
 
   @IsOptional()
   @IsUrl()
-  @Length(0, 100)
+  @IsBase64()
   imageUrl: string;
 
   @IsOptional()
